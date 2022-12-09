@@ -45,7 +45,7 @@ totalPrice = planPrice + addOnPrice
 	<div class="subscription">
 		<div class="chosenPlan">
 			<div>
-				<p>{$planSelection}{#if $monthlyIsSelected}(Monthly){:else}(Yearly){/if}</p>
+				<p>{$planSelection} {#if $monthlyIsSelected}(Monthly){:else}(Yearly){/if}</p>
 				<button on:click={()=>{$currentStep = 2}}>Change</button>
 			</div>
 			<strong>${planPrice}/{#if $monthlyIsSelected}mo{:else}yr{/if}</strong>
