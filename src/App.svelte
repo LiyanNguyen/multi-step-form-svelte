@@ -1,7 +1,8 @@
 <script>
-  import { once, prevent_default } from "svelte/internal";
 import Step1 from "./lib/Step1.svelte";
-  let currentStep = 1;
+import Step2 from "./lib/Step2.svelte";
+
+let currentStep = 1;
 </script>
 
 <main>
@@ -38,11 +39,15 @@ import Step1 from "./lib/Step1.svelte";
     </div>
   </aside>
   <div class="formContainer">
-    <Step1/>
+    {#if currentStep === 1}
+      <Step1/>
+    {:else if currentStep === 2}
+      <Step2/>
+    {/if}
   </div>
   <footer>
     <button class="previousButton" on:click={()=>{currentStep--}} class:show="{currentStep > 1}">go back</button>
-    <button class="nextButton" on:click={()=>{currentStep++}}>next step</button>
+    <button class="nextButton" on:click={()=>{if(currentStep < 4) {currentStep++}}}>next step</button>
   </footer>
 </main>
 
@@ -231,6 +236,14 @@ footer {
     width: 450px;
     height: 48px;
   }
+
+  .previousButton {
+    transition: 0.15;
+  }
+
+  .previousButton:hover {
+    color: #022959;
+  }
   
   .nextButton {
     width: 123px;
@@ -238,6 +251,11 @@ footer {
     border-radius: 8px;
     font-size: 16px;
     line-height: 18px;
+    transition: 0.15s;
+  }
+
+  .nextButton:hover {
+    background-color: #164A8A;
   }
 }
 </style>
