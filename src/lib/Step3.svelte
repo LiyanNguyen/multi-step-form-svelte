@@ -77,7 +77,7 @@ h3 {
 
 .addOnOption {
 	height: 62px;
-	background-color: #F8F9FF;
+	background-color: white;
 	border: 1px solid #D6D9E6;
 	border-radius: 8px;
 	cursor: pointer;
@@ -88,6 +88,7 @@ h3 {
 }
 
 .addOnOption.selected {
+	background-color: #F8F9FF;
 	border: 1px solid #483EFF;
 }
 
@@ -145,6 +146,11 @@ h3 {
 	.addOnOption {
 		height: 81px;
 		padding-inline: 24px;
+		transition: 0.15s;
+	}
+
+	.addOnOption:hover {
+		border: 1px solid #483EFF;
 	}
 
 	.info strong {

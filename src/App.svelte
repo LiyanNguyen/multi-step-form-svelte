@@ -2,36 +2,37 @@
 import Step1 from "./lib/Step1.svelte";
 import Step2 from "./lib/Step2.svelte";
 import Step3 from "./lib/Step3.svelte";
+import Step4 from "./lib/Step4.svelte";
+import { currentStep } from "./lib/sharedState";
 
-let currentStep = 1;
 </script>
 
 <main>
   <aside>
     <div class="overAllStep">
       <div class="stepContainer">
-        <button class="stepButton" class:selected="{currentStep === 1}">1</button>
+        <button class="stepButton" class:selected="{$currentStep === 1}">1</button>
         <div class="stepText">
           <p>step 1</p>
           <b>your info</b>
         </div>
       </div>
       <div class="stepContainer">
-        <button class="stepButton" class:selected="{currentStep === 2}">2</button>
+        <button class="stepButton" class:selected="{$currentStep === 2}">2</button>
         <div class="stepText">
           <p>step 2</p>
           <b>select plan</b>
         </div>
       </div>
       <div class="stepContainer">
-        <button class="stepButton" class:selected="{currentStep === 3}">3</button>
+        <button class="stepButton" class:selected="{$currentStep === 3}">3</button>
         <div class="stepText">
           <p>step 3</p>
           <b>add-ons</b>
         </div>
       </div>
       <div class="stepContainer">
-        <button class="stepButton" class:selected="{currentStep === 4}">4</button>
+        <button class="stepButton" class:selected="{$currentStep === 4}">4</button>
         <div class="stepText">
           <p>step 4</p>
           <b>summary</b>
@@ -40,17 +41,23 @@ let currentStep = 1;
     </div>
   </aside>
   <div class="formContainer">
-    {#if currentStep === 1}
+    {#if $currentStep === 1}
       <Step1/>
-    {:else if currentStep === 2}
+    {:else if $currentStep === 2}
       <Step2/>
-    {:else if currentStep === 3}
+    {:else if $currentStep === 3}
       <Step3/>
+    {:else if $currentStep === 4}
+      <Step4/>
     {/if}
   </div>
   <footer>
-    <button class="previousButton" on:click={()=>{currentStep--}} class:show="{currentStep > 1}">go back</button>
-    <button class="nextButton" on:click={()=>{if(currentStep < 4) {currentStep++}}}>next step</button>
+    <button class="previousButton" on:click={()=>{$currentStep--}} class:show="{$currentStep > 1}">go back</button>
+    {#if $currentStep < 4}
+      <button class="nextButton" on:click={()=>{if($currentStep < 4) {$currentStep++}}}>next step</button>
+    {:else}
+      <button class="nextButton confirm">confirm</button>
+    {/if}
   </footer>
 </main>
 
@@ -153,9 +160,18 @@ footer {
   font-size: 14px;
   line-height: 16px;
   color: white;
-  padding: 16px 12px;
   text-transform: capitalize;
   cursor: pointer;
+  width: 97px;
+  height: 40px;
+}
+
+.nextButton.confirm {
+  background-color: #483EFF;
+}
+
+.nextButton.confirm:hover {
+  background-color: #928CFF;
 }
 
 @media screen and (min-width: 1366px) {
@@ -240,6 +256,8 @@ footer {
   }
 
   .previousButton {
+    font-size: 16px;
+    line-height: 18px;
     transition: 0.15;
   }
 
