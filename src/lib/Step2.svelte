@@ -2,20 +2,18 @@
 import arcadeImg from "../assets/images/icon-arcade.svg"	
 import advanceImg from "../assets/images/icon-advanced.svg"	
 import proImg from "../assets/images/icon-pro.svg"	
-
-let selection = "arcade"
-let monthlyIsSelected = true
+import { monthlyIsSelected, planSelection } from "./sharedState";
 </script>
 
 <article>
 	<h3>Select your plan</h3>
 	<p class="description">You have the option of monthly or yearly billing.</p>
 	<div class="optionContainer">
-		<button class="boxOption" class:selected="{selection === 'arcade'}" on:click={()=>{selection = "arcade"}}>
+		<button class="boxOption" class:selected="{$planSelection === 'arcade'}" on:click={()=>{$planSelection = "arcade"}}>
 			<img src={arcadeImg} alt="">
 			<div>
 				<strong>Arcade</strong>
-				{#if monthlyIsSelected}
+				{#if $monthlyIsSelected}
 					<p>$9/mo</p>
 				{:else}
 					<p>$90/yr</p>
@@ -23,11 +21,11 @@ let monthlyIsSelected = true
 				{/if}
 			</div>
 		</button>
-		<button class="boxOption" class:selected="{selection === 'advanced'}" on:click={()=>{selection = "advanced"}}>
+		<button class="boxOption" class:selected="{$planSelection === 'advanced'}" on:click={()=>{$planSelection = "advanced"}}>
 			<img src={advanceImg} alt="">
 			<div>
 				<strong>Advanced</strong>
-				{#if monthlyIsSelected}
+				{#if $monthlyIsSelected}
 					<p>$12/mo</p>
 				{:else}
 					<p>$120/yr</p>
@@ -35,11 +33,11 @@ let monthlyIsSelected = true
 				{/if}
 			</div>
 		</button>
-		<button class="boxOption" class:selected="{selection === 'pro'}" on:click={()=>{selection = "pro"}}>
+		<button class="boxOption" class:selected="{$planSelection === 'pro'}" on:click={()=>{$planSelection = "pro"}}>
 			<img src={proImg} alt="">
 			<div>
 				<strong>Pro</strong>
-				{#if monthlyIsSelected}
+				{#if $monthlyIsSelected}
 					<p>$15/mo</p>
 				{:else}
 					<p>$150/yr</p>
@@ -49,11 +47,11 @@ let monthlyIsSelected = true
 		</button>
 	</div>
 	<div class="switchContainer">
-		<p class:selected={monthlyIsSelected}>Monthly</p>
-		<button class="swtich" on:click={()=>{monthlyIsSelected = !monthlyIsSelected}}>
-			<div class="circle" class:right={!monthlyIsSelected}></div>
+		<p class:selected={$monthlyIsSelected}>Monthly</p>
+		<button class="swtich" on:click={()=>{$monthlyIsSelected = !$monthlyIsSelected}}>
+			<div class="circle" class:right={!$monthlyIsSelected}></div>
 		</button>
-		<p class:selected={!monthlyIsSelected}>Yearly</p>
+		<p class:selected={!$monthlyIsSelected}>Yearly</p>
 	</div>
 </article>
 

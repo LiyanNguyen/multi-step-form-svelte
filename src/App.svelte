@@ -1,6 +1,7 @@
 <script>
 import Step1 from "./lib/Step1.svelte";
 import Step2 from "./lib/Step2.svelte";
+import Step3 from "./lib/Step3.svelte";
 
 let currentStep = 1;
 </script>
@@ -9,28 +10,28 @@ let currentStep = 1;
   <aside>
     <div class="overAllStep">
       <div class="stepContainer">
-        <button class="stepButton" class:selected="{currentStep === 1}" on:click={()=>{currentStep = 1}}>1</button>
+        <button class="stepButton" class:selected="{currentStep === 1}">1</button>
         <div class="stepText">
           <p>step 1</p>
           <b>your info</b>
         </div>
       </div>
       <div class="stepContainer">
-        <button class="stepButton" class:selected="{currentStep === 2}" on:click={()=>{currentStep = 2}}>2</button>
+        <button class="stepButton" class:selected="{currentStep === 2}">2</button>
         <div class="stepText">
           <p>step 2</p>
           <b>select plan</b>
         </div>
       </div>
       <div class="stepContainer">
-        <button class="stepButton" class:selected="{currentStep === 3}" on:click={()=>{currentStep = 3}}>3</button>
+        <button class="stepButton" class:selected="{currentStep === 3}">3</button>
         <div class="stepText">
           <p>step 3</p>
           <b>add-ons</b>
         </div>
       </div>
       <div class="stepContainer">
-        <button class="stepButton" class:selected="{currentStep === 4}" on:click={()=>{currentStep = 4}}>4</button>
+        <button class="stepButton" class:selected="{currentStep === 4}">4</button>
         <div class="stepText">
           <p>step 4</p>
           <b>summary</b>
@@ -43,6 +44,8 @@ let currentStep = 1;
       <Step1/>
     {:else if currentStep === 2}
       <Step2/>
+    {:else if currentStep === 3}
+      <Step3/>
     {/if}
   </div>
   <footer>
@@ -89,7 +92,6 @@ aside {
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  cursor: pointer;
   transition: 0.25s;
 }
 
