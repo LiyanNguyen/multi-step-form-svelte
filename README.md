@@ -1,10 +1,12 @@
 # Multi-step Form 
-A simple rock, paper, scissors web app game made with Svelte framework
+A service subscription progressive form made with Svelte framework
 
 ### Frontend Mentor - Multi-step Form
 This is a solution to the [Multi-step form challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/multistep-form-YVAnSdqQBJ).
 
 ### Screenshot
+![image](https://user-images.githubusercontent.com/50958126/206664332-9993fb0f-feea-47ef-9d3a-8e2c0f109ff1.png)
+![image](https://user-images.githubusercontent.com/50958126/206664450-ce78a3c9-3fd8-4902-916d-f11d08127ce8.png)
 
 ### Links
 - Source URL: https://github.com/LiyanNguyen/multi-step-form-svelte
