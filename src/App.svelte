@@ -4,7 +4,29 @@ import Step2 from "./lib/Step2.svelte";
 import Step3 from "./lib/Step3.svelte";
 import Step4 from "./lib/Step4.svelte";
 import PurchaseComplete from "./lib/PurchaseComplete.svelte";
-import { currentStep } from "./lib/sharedState";
+import { currentStep, customerEmail, customerName, customerPhone, emailIsError, nameIsError, phoneIsError } from "./lib/sharedState";
+
+function nextStep () {
+	if($currentStep === 1) {
+		if ($customerName === "") {
+			$nameIsError = true
+		}
+		if ($customerEmail === "") {
+			$emailIsError = true
+		}
+		if ($customerPhone === "") {
+			$phoneIsError = true
+		}
+
+		if($customerName !== "" && $customerEmail !== "" && $customerPhone !== "") {
+			$currentStep++
+		}
+	}
+
+	else if($currentStep > 1 && $currentStep < 4){
+		$currentStep++
+	}
+}
 
 </script>
 
@@ -55,9 +77,9 @@ import { currentStep } from "./lib/sharedState";
 		{/if}
 	</div>
 	<footer>
-		<button class="previousButton" on:click={()=>{$currentStep--}} class:show="{$currentStep > 1 && $currentStep < 4}">go back</button>
+		<button class="previousButton" on:click={()=>{$currentStep--}} class:show="{$currentStep > 1 && $currentStep < 5}">go back</button>
 		{#if $currentStep < 4}
-			<button class="nextButton" on:click={()=>{if($currentStep < 4) {$currentStep++}}}>next step</button>
+			<button class="nextButton" on:click={nextStep}>next step</button>
 		{:else if $currentStep === 4}
 			<button class="nextButton confirm" on:click={()=>{$currentStep++}}>confirm</button>
 		{/if}

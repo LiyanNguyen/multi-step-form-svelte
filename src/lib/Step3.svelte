@@ -1,9 +1,11 @@
 <script>
 import checkMarkImg from "../assets/images/icon-checkmark.svg"
 import { customizableProfileAddOnIsAdded, largerStoreAddOnIsAdded, monthlyIsSelected, onlineServiceAddOnIsAdded } from "./sharedState";
+let showComponent = false
+window.setTimeout(()=>{showComponent = true}, 0)
 </script>
 
-<article>
+<article class:show={showComponent}>
 	<h3>Pick add-ons</h3>
 	<p class="description">Add-ons help enhance your gaming experience.</p>
 	<div class="addOnContainer">
@@ -53,6 +55,17 @@ import { customizableProfileAddOnIsAdded, largerStoreAddOnIsAdded, monthlyIsSele
 </article>
 
 <style>
+article {
+	transition: 0.3s;
+	position: relative;
+	right: -10rem;
+	opacity: 0;
+}
+.show {
+	opacity: 1;
+	right: 0;
+}
+
 h3 {
 	font-weight: 700;
 	font-size: 24px;

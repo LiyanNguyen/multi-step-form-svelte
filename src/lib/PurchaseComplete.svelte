@@ -1,8 +1,11 @@
 <script>
 import thankYouImg from "../assets/images/icon-thank-you.svg"
+
+let showComponent = false
+window.setTimeout(()=>{showComponent = true}, 0)
 </script>
 
-<article>
+<article class:show={showComponent}>
 	<img src={thankYouImg} alt="">
 	<h3>Thank you!</h3>
 	<p>Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com.</p>
@@ -13,6 +16,15 @@ article {
 	display: flex;
 	flex-direction: column;
 	align-items: center;	
+	transition: 0.3s;
+	position: relative;
+	right: -10rem;
+	opacity: 0;
+}
+
+.show {
+	opacity: 1;
+	right: 0;
 }
 
 img {

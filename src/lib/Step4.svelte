@@ -37,9 +37,12 @@ if (!$monthlyIsSelected) {
 }
 
 totalPrice = planPrice + addOnPrice
+
+let showComponent = false
+window.setTimeout(()=>{showComponent = true}, 0)
 </script>
 
-<article>
+<article class:show={showComponent}>
 	<h3>Finishing up</h3>
 	<p class="description">Double-check everything looks OK before confirming.</p>
 	<div class="subscription">
@@ -77,6 +80,17 @@ totalPrice = planPrice + addOnPrice
 </article>
 
 <style>
+article {
+	transition: 0.3s;
+	position: relative;
+	right: -10rem;
+	opacity: 0;
+}
+.show {
+	opacity: 1;
+	right: 0;
+}
+
 h3 {
 	font-weight: 700;
 	font-size: 24px;

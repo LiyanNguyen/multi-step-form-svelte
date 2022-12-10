@@ -1,26 +1,51 @@
 <script>
-	let isError = false
+import { customerEmail, customerName, customerPhone, emailIsError, nameIsError, phoneIsError } from "./sharedState";
+
+$:if ($customerName !== "") {
+	$nameIsError = false
+}
+$:if ($customerEmail !== "") {
+	$emailIsError = false
+}
+$:if ($customerPhone !== "") {
+	$phoneIsError = false
+}
+
+let showComponent = false
+window.setTimeout(()=>{showComponent = true}, 0)
 </script>
 
-<h3>Personal Info</h3>
-<p>Please provide your name, email address, and phone number.</p>
-
-<form>
-	<div>
-		<label for="nameInput">Name</label>
-		<input type="text" id="nameInput" placeholder="e.g. Stephen King">
-	</div>
-	<div>
-		<label for="emailInput">Email Address</label>
-		<input type="email" id="emailInput" placeholder="e.g. stephenking@lorem.com">
-	</div>
-	<div>
-		<label for="phoneInput">Phone Number</label>
-		<input type="number" class:error={isError} id="phoneInput" placeholder="e.g. +1 234 567 890">
-	</div>
-</form>
+<article class:show={showComponent}>
+	<h3>Personal Info</h3>
+	<p>Please provide your name, email address, and phone number.</p>
+	<form>
+		<div>
+			<label for="nameInput">Name</label>
+			<input type="text" class:error={$nameIsError} id="nameInput" placeholder="e.g. Stephen King" bind:value={$customerName}>
+		</div>
+		<div>
+			<label for="emailInput">Email Address</label>
+			<input type="email" class:error={$emailIsError} id="emailInput" placeholder="e.g. stephenking@lorem.com" bind:value={$customerEmail}>
+		</div>
+		<div>
+			<label for="phoneInput">Phone Number</label>
+			<input type="number" class:error={$phoneIsError} id="phoneInput" placeholder="e.g. +1 234 567 890" bind:value={$customerPhone}>
+		</div>
+	</form>
+</article>
 
 <style>
+article {
+	transition: 0.3s;
+	position: relative;
+	right: -10rem;
+	opacity: 0;
+}
+.show {
+	opacity: 1;
+	right: 0;
+}
+
 h3 {
 	font-weight: 700;
 	font-size: 24px;

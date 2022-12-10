@@ -7,3 +7,11 @@ export let monthlyIsSelected = writable(true);
 export let onlineServiceAddOnIsAdded = writable(false)
 export let largerStoreAddOnIsAdded = writable(false)
 export let customizableProfileAddOnIsAdded = writable(false)
+
+// STEP 1 FORM
+export let customerName = writable("")
+export let customerEmail = writable("")
+export let customerPhone = writable("")
+export let nameIsError = writable(false)
+export let emailIsError = writable(false)
+export let phoneIsError = writable(false)

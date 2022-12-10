@@ -3,9 +3,11 @@ import arcadeImg from "../assets/images/icon-arcade.svg"
 import advanceImg from "../assets/images/icon-advanced.svg"	
 import proImg from "../assets/images/icon-pro.svg"	
 import { monthlyIsSelected, planSelection } from "./sharedState";
+let showComponent = false
+window.setTimeout(()=>{showComponent = true}, 0)
 </script>
 
-<article>
+<article class:show={showComponent}>
 	<h3>Select your plan</h3>
 	<p class="description">You have the option of monthly or yearly billing.</p>
 	<div class="optionContainer">
@@ -56,6 +58,17 @@ import { monthlyIsSelected, planSelection } from "./sharedState";
 </article>
 
 <style>
+article {
+	transition: 0.3s;
+	position: relative;
+	right: -10rem;
+	opacity: 0;
+}	
+.show {
+	opacity: 1;
+	right: 0;
+}
+
 h3 {
 	font-weight: 700;
 	font-size: 24px;
